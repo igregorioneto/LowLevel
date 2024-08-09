@@ -1,0 +1,43 @@
+# Ignorar arquivos de compilação
+*.o
+*.out
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignorar executáveis gerados
+a.out
+a.exe
+*.exe
+*.out
+
+# Ignorar diretórios de compilação
+/build/
+/bin/
+/obj/
+/Debug/
+/Release/
+/dist/
+
+# Ignorar arquivos de log e depuração
+*.log
+*.stackdump
+
+# Ignorar arquivos temporários do sistema
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Ignorar arquivos de diretório de editores/IDE
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar arquivos gerados pelo editor
+*.DS_Store
