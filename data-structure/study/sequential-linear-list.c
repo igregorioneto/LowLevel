@@ -9,7 +9,7 @@ typedef struct {
 } REGISTRO;
 
 typedef struct {
-    REGISTRO A[MAX];
+    REGISTRO A[MAX+1]; // acrescentando +1 no valor final devido a busca por elementos
     int nroElem;
 } LISTA;
 
@@ -38,6 +38,29 @@ int buscaSequencial(LISTA* l, TIPOCHAVE ch) {
     }    
     return -1;
 }
+// Busca de elementos (sentinela)
+int buscaSentinela(LISTA* l, TIPOCHAVE ch) {
+    int i = 0;
+    l->A[l->nroElem].chave = ch;
+    while(l->A[i].chave != ch) i++;
+    if (i == l->nroElem) return -1;
+    else return i;
+}
+// Busca Binária
+int buscaBinaria(LISTA*l, TIPOCHAVE ch) {
+    int esq, dir, meio;
+    esq = 0;
+    dir = l->nroElem-1;
+    while(esq <= dir) {
+        meio = ((esq + dir) / 2);
+        if (l->A[meio].chave == ch) return meio;
+        else {
+            if (l->A[meio].chave < ch) esq = meio + 1;
+            else dir = meio - 1;
+        }
+    }
+    return -1;
+}
 // Inserir elementos na estrutura
 bool inserirElemLista(LISTA* l, REGISTRO reg, int i) {
     int j;
@@ -47,6 +70,17 @@ bool inserirElemLista(LISTA* l, REGISTRO reg, int i) {
     l->A[i] = reg;
     l->nroElem++;
     return true;
+}
+// Inserir elementos - ordenada
+bool inserirElemOrd(LISTA* l, REGISTRO reg) {
+    if (l->nroElem >= MAX) return false;
+    int pos = l->nroElem;
+    while (pos > 0 && l->A[pos-1].chave > reg.chave) {
+        l->A[pos] = l->A[pos-1];
+        pos--;
+    }   
+    l->A[pos] = reg;
+    l->nroElem++; 
 }
 // Excluir elementos da estrutura
 bool excluirElemLista(TIPOCHAVE ch, LISTA* l) {
@@ -75,12 +109,18 @@ int main() {
     inserirElemLista(&lista, reg, 0);
     reg.chave = 20;
     inserirElemLista(&lista, reg, 1);
-    reg.chave = 30;
+    reg.chave = 40;
     inserirElemLista(&lista, reg, 2);
+    reg.chave = 30;
+    inserirElemOrd(&lista, reg);
     // Exibindo lista
     exibirLista(&lista);
     // Buscando elemento da lista
     pos = buscaSequencial(&lista, 20);
+    pos = buscaSentinela(&lista, 30);
+    printf("Busca sentinela: %i\n", pos);
+    pos = buscaBinaria(&lista, 20);
+    printf("Busca binária: %i\n", pos);
     if (pos != -1) 
         printf("Elemento %i encontrado na posição %i\n", 20, pos);
     else
