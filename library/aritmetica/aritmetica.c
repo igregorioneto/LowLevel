@@ -16,3 +16,6 @@ int divisao(int x, int y) {
 int potencia(int x, int y) {
     return pow(x, y);
 }
+int raizQuadrada(int x) {
+  return sqtr(x);
+}

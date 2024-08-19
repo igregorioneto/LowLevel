@@ -8,12 +8,15 @@ int main()
     printf("Digite uma operacao matematica (+,-,*,/): ");
     ch = getchar();
     printf("Digite 2 numeros: ");
+
     scanf("%d %d", &x, &y);
     switch (ch) {
         case '+': z = soma(x, y); break;
         case '-': z = subtracao(x, y); break;
         case '*': z = produto(x, y); break;
         case '/': z = divisao(x, y); break;
+        case 'R': z = raizQuadrada(x); break;
+        case 'P': z = potencia(x, y); break;
         default: z = soma(x, y); break;
     }
     printf("Resultado = %d\n", z);
