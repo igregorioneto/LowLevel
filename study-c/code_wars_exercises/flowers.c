@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdio.h>
 
 bool lovefunc(int flower1, int flower2) {
   int moduleFlower1 = (flower1 % 2), moduleFlower2 = (flower2 % 2);
