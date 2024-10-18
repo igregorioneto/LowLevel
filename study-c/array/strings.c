@@ -1,0 +1,14 @@
+// C program to illustrate strings
+#include <stdio.h>
+
+int main()
+{
+  // creating array of characters
+  char arr[6] = { 'G', 'e', 'e', 'k', 's', '\0' };
+  // printing string
+  int i = 0;
+  while(arr[i]) {
+    printf("%c", arr[i++]);
+  }
+  return 0;
+}
